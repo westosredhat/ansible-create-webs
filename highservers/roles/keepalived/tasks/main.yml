@@ -1,0 +1,13 @@
+- name: keepalived server install
+  yum: name=keepalived state=present
+- name: delete keepalived config
+  shell: rm -rf /etc/keepalived/keepalived.conf
+- name: copy master_keepalived.conf.j2 to MASTER node
+  when: ansible_hostname == "qjc11"
+  template: src=master_keepalived.conf.j2 dest=/etc/keepalived/keepalived.conf
+- name: copy backup_keepalived.conf.j2 to BACKUP node
+  when: ansible_hostname == "qjc14"
+  template: src=backup_keepalived.conf.j2 dest=/etc/keepalived/keepalived.conf
+- name: restart keepalived
+  service: name=haproxy enabled=yes state=restarted
+

@@ -1,0 +1,16 @@
+- name: web build
+  remote_user: root
+  hosts: webservers
+  roles:
+    - prepare
+    - mysql
+    - php 
+    - nginx
+
+- name: high build
+  remote_user: root
+  hosts: khservers
+  roles:
+    - prepare
+    - haproxy
+    - keepalived

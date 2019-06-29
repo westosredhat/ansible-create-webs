@@ -1,0 +1,12 @@
+- name: install the mysql
+  yum: name=mariadb-server state=present    
+- name: mkdir date directory
+  shell: mkdir -p /mydata/data    
+- name: provide configration file
+  copy: src=my.cnf dest=/etc/my.cnf    
+- name: chage the owner
+  shell: chown -R mysql:mysql /mydata/*   
+- name: chage mysqldata dir
+  shell: sed -i 's/datadir=\/var\/lib\/mysql/datadir=\/mydata\/data/g' /etc/my.cnf 
+- name: start mariadb
+  service: name=mariadb enabled=yes state=started    

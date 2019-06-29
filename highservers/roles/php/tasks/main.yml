@@ -1,0 +1,5 @@
+- name: install the php
+  yum: name=php state=present
+- name: install the php-mysql
+  yum: name=php-mysql state=present
+

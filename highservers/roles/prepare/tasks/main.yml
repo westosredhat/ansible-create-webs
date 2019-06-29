@@ -1,0 +1,10 @@
+- name: delete yum config
+  shell: rm -fr /etc/yum.repos.d/*
+- name: provide yumrepo file
+  shell: wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+- name: provide epelrepo file
+  shell: wget -O /etc/yum.repos.d/epel-7.repo http://mirrors.aliyun.com/repo/epel-7.repo
+- name: clean the yum repo
+  shell: yum clean all
+- name: clean the iptables
+  shell: iptables -F

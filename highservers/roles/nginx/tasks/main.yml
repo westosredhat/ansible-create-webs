@@ -1,0 +1,13 @@
+- name: create group nginx
+  group: name=nginx
+- name: create user nginx
+  user: name=nginx group=nginx system=yes shell=/sbin/nologin
+- name: install the nginx
+  yum: name=nginx state=present
+- name: provide test page
+  copy: src=index.php dest=/usr/share/nginx/html/
+- name: delete nginx config
+  shell: rm -rf  /etc/nginx/nginx.conf
+- name: provide configuration file
+  copy: src=nginx.conf dest=/etc/nginx/nginx.conf
+  notify: restart nginx

@@ -1,0 +1,8 @@
+- name: install the haproxy
+  yum: name=haproxy state=present
+- name: delete haproxy config
+  shell: rm -rf /etc/haproxy/haproxy.cfg
+- name: provide configuration file
+  copy: src=haproxy.cfg dest=/etc/haproxy/haproxy.cfg
+- name: restart haproxy
+  service: name=haproxy enabled=yes state=restarted
