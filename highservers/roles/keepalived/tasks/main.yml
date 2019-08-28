@@ -9,5 +9,5 @@
   when: ansible_hostname == "qjc14"
   template: src=backup_keepalived.conf.j2 dest=/etc/keepalived/keepalived.conf
 - name: restart keepalived
-  service: name=haproxy enabled=yes state=restarted
+  service: name=keepalived enabled=yes state=restarted
 
